@@ -8,6 +8,10 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  // コンテナ内からviteにアクセスするために必要
+  server: {
+    host: true,
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: ./docker/php/Dockerfile
     ports:
-      - 5173:5173
+      - 3000:3000
     depends_on:
       - db
     volumes:
@@ -32,6 +32,16 @@ services:
       - app
     volumes:
       - ./src/laravel/:/var/www/html
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    volumes:
+      - ./src/frontend:/usr/src/app
+    command: sh -c "npm run dev"
+    ports:
+      - 5173:5173
 
   db:
     build:
